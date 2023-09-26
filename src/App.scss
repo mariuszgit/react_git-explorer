@@ -1,0 +1,36 @@
+.App {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    margin-bottom: 42px;
+  }
+
+  &__form {
+    margin-bottom: 42px;
+  }
+}
+
+.Nav {
+  border: 1px solid blue;
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 16px;
+  }
+
+  &__item {
+    list-style-type: none;
+  }
+
+  &__link {
+    border: 1px solid red;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
