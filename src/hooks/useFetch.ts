@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const TOKEN = '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';
+const TOKEN = 'xxxxx';
 const myHeaders = new Headers({
     'Authorization': `Bearer ${TOKEN}`
 })
