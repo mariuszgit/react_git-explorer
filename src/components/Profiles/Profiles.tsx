@@ -1,65 +1,61 @@
-import { useFetch } from "../../hooks/useFetch";
-// components
-import { Loader } from '../Loader';
-import './Profiles.scss';
+import { StyledArticle, StyledSection } from './styles';
+import { Dispatch, SetStateAction, useEffect } from "react";
+import useLocalStorage from "../../hooks/usLocalStorage";
+// types
+import { User } from "../../types/User";
+import { useFetch } from '../../hooks/useFetch';
 
 type Props = {
     userName: string;
-    setSelectedName: (value: string) => void;
-}
+  setSelectedName: Dispatch<SetStateAction<string | null>>;
+  selectedName: string | null;
+};
 
-type User = {
-    name: string;
-    login: string;
-    avatar_url: string;
-    bio: string;
-    location: string;
-    url: string;
-    followers: number;
-    following: number;
-}
-
-export const Profiles = ({ userName, setSelectedName }: Props) => {
+export const Profiles = ({ selectedName, setSelectedName, userName }: Props) => {
     const { isLoading, value, error } = useFetch<User>(userName);
-    console.log(isLoading, value);
-    return (
-        <>
-        {isLoading ? (
-            <Loader />
-        ) : (
-            <>
-            {value && (
-                <div className="Profiles">
-                <div 
-                  className="Profiles__item"
-                  onClick={() => setSelectedName(value.login)}
-                >
-                    <img src={value?.avatar_url} alt="" className="Profiles__icon" />
 
-                    <div className="Profiles__info">
-                        <strong>{value.login}</strong>
-                        <p>{value?.url}</p>
+  const { array, addItem, removeItem } = useLocalStorage("myNames");
+  useEffect(() => {
+    console.log(value);
+    if (value?.login) {
+        addItem(value)
+    }
+  }, [value])
+  console.log(selectedName);
+  return (
+    <>
+      {array.length > 0 && (
+        <StyledSection className="History">
+          {array.map((el: User) => (
+            <StyledArticle active={selectedName === el.login}>
+              <article onClick={() => setSelectedName(el.login)}>
+                <div className="content">
+                  <img
+                    src={el.avatar_url}
+                    alt={`${el.login} avatar`}
+                    className="image"
+                  />
 
-                        <div className="Profiles__boxes">
-                            <div>
-                                <strong>Followers</strong>
-                                {value.followers}
-                            </div>
-
-                            <div>
-                                <strong>Following</strong>
-                                {value.following}
-                            </div>
-                        </div>
-                    </div>
+                  <div className="info">
+                    <strong>{el.login}</strong>
+                    <span>{el.url}</span>
+                  </div>
                 </div>
-                
-            </div>
-            )}
-            </>
-            
-        )}
-        </>
+                <hr />
+                <div className="footer">
+                  <span>
+                    Followers: <strong>{el.followers}</strong>
+                  </span>
 
-    );
-}
+                  <span>
+                    Following: <strong>{el.following}</strong>
+                  </span>
+                </div>
+              </article>
+            </StyledArticle>
+          ))}
+        </StyledSection>
+      )}
+    </>
+  );
+};
