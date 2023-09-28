@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
 
-const githubToken = process.env.GH_TOKEN;
-const myHeaders = new Headers({
-    'Authorization': `Bearer ${githubToken}`
-})
 
 type Data<T> = {
     isLoading: boolean;
@@ -29,7 +25,7 @@ export const useFetch = <T>(url: string): Data<T> => {
         if (!url) return;
         const fetchData = async () => {
             try {
-                const res = await fetch(`https://api.github.com/users/${url}`, { headers: myHeaders, signal: abortCtrl.signal });
+                const res = await fetch(`https://api.github.com/users/${url}`, { signal: abortCtrl.signal });
                 console.log(`https://api.github.com/users/${url}`)
                 const json = await res.json();
                 setValue(json);
