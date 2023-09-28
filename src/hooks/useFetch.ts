@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
 
-
 type Data<T> = {
     isLoading: boolean;
     value: T | null;
@@ -33,6 +32,7 @@ export const useFetch = <T>(url: string): Data<T> => {
                 setError(err as Error)
             } finally {
                 setIsLoading(false)
+
             }
         }
 

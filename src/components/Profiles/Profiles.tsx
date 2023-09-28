@@ -6,6 +6,7 @@ import { useFetch } from '../../hooks/useFetch';
 import useLocalStorage from "../../hooks/usLocalStorage";
 // styles
 import { StyledArticle, StyledSection } from './styles';
+import usLocalStorage from "../../hooks/usLocalStorage";
 
 type Props = {
     userName: string;
@@ -16,10 +17,10 @@ type Props = {
 export const Profiles = ({ selectedName, setSelectedName, userName }: Props) => {
     const { isLoading, value, error } = useFetch<User>(userName);
 
-  const { array, addItem, removeItem } = useLocalStorage("myNames");
+  const { array, addItem, removeItem } = usLocalStorage("myNames");
   useEffect(() => {
     console.log(value);
-    if (value?.login) {
+    if (value !== null && value.login) {
         addItem(value)
     }
   }, [value])
