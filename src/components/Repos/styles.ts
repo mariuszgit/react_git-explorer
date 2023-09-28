@@ -19,28 +19,28 @@ export const StyledArticle = styled.article<Props>`
     transition: opacity .25s ease-out;
     cursor: pointer;
 
-    &:hover {
-        outline: 4px solid var(--c-cyan);
-        opacity: 100%;
-    }
-
-    & .content {
+    & header {
         display: flex;
+        gap: 16px;
         align-items: center;
-        gap: 24px;
+        & img {
+            width: 32px;
+            border-radius: 50%;
+        }
     }
 
-    & .image {
-        width: 52px;
-        border-radius: 50%;
+    & main {
+        
     }
-    & .info {
-        display: flex;
-        flex-direction: column;
-    }
+
     & .footer {
         display: flex;
         gap: 48px;
+    }
+
+    &:hover {
+        outline: 4px solid var(--c-cyan);
+        opacity: 100%;
     }
     
 `;

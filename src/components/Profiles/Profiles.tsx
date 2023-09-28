@@ -1,9 +1,11 @@
-import { StyledArticle, StyledSection } from './styles';
 import { Dispatch, SetStateAction, useEffect } from "react";
-import useLocalStorage from "../../hooks/usLocalStorage";
 // types
 import { User } from "../../types/User";
 import { useFetch } from '../../hooks/useFetch';
+//components
+import useLocalStorage from "../../hooks/usLocalStorage";
+// styles
+import { StyledArticle, StyledSection } from './styles';
 
 type Props = {
     userName: string;

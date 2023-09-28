@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../Loader";
-import './Details.scss';
 import { Redirect } from "react-router-dom";
 
 

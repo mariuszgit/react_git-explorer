@@ -10,19 +10,22 @@ type Props = {
 export const AppForm = ({ onFormSubmit, reset }: Props) => {
     const [query, setQuery] = useState('');
 
-    const inputRef = useRef(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-        if (inputRef.current) {
-          console.log(inputRef.current)
-        }
+
+          // inputRef.current?.blur()
+          // e.target.focus()
+
         reset();
         onFormSubmit(query);
+        console.log(inputRef)
     }
 
     return (
-        <StyledForm onSubmit={handleSubmit} className="AppForm App__form" ref={inputRef}>
-            <StyledInput 
+        <StyledForm onSubmit={handleSubmit} className="AppForm App__form">
+            <StyledInput
+              ref={inputRef}
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}

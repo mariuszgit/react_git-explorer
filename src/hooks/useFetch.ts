@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-const TOKEN = 'xxxxx';
+
+const githubToken = process.env.GH_TOKEN;
 const myHeaders = new Headers({
-    'Authorization': `Bearer ${TOKEN}`
+    'Authorization': `Bearer ${githubToken}`
 })
 
 type Data<T> = {
@@ -15,15 +16,20 @@ export const useFetch = <T>(url: string): Data<T> => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [value, setValue] = useState<T | null>(null);
     const [error, setError] = useState<Error | null>(null);
-
+    const fetchRef = useRef<AbortController | null>(null);
     
 
     useEffect(() => {
+        const abortCtrl = new AbortController();
+        if (fetchRef.current) {
+            fetchRef.current = abortCtrl;
+        }
+
         console.log(url);
         if (!url) return;
         const fetchData = async () => {
             try {
-                const res = await fetch(`https://api.github.com/users/${url}`, { headers: myHeaders });
+                const res = await fetch(`https://api.github.com/users/${url}`, { headers: myHeaders, signal: abortCtrl.signal });
                 console.log(`https://api.github.com/users/${url}`)
                 const json = await res.json();
                 setValue(json);
@@ -36,6 +42,9 @@ export const useFetch = <T>(url: string): Data<T> => {
 
         setIsLoading(true);
         fetchData();
+        return () => {
+            abortCtrl.abort();
+        }
     }, [url]);
 
     return { isLoading, value, error};

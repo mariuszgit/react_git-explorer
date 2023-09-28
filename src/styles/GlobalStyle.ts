@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         //colors
         --c-cyan: #67eae2;
         --c-gray: #e5e7eb;
+        --c-black: #1f2937;
         /* --c-gray: #6b7280; */
         --c-gray--light: #fafafa;
         //radius
@@ -17,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 
     html {
         font-size: 16px;
+        color: var(--c-black);
     }
         
 `;

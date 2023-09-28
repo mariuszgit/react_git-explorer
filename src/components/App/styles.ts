@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+export const StyledHeroSection = styled.section`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 0;
+
+    & img.hero-image {
+        max-width: 40%;
+    }
+
+`
 export const StyledNav = styled.nav`
     display: flex;
     justify-content: space-between;
