@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_git-explorer/static/css/main.8587547b.css",
-    "main.js": "/react_git-explorer/static/js/main.efc81f22.js",
+    "main.js": "/react_git-explorer/static/js/main.75344453.js",
     "static/media/undraw_developer2.svg": "/react_git-explorer/static/media/undraw_developer2.ab748c6900c6fac235053b85a9c23f5b.svg",
     "static/media/trash.svg": "/react_git-explorer/static/media/trash.8185c53bdcae20268524f369488d8905.svg",
     "static/media/grid-on.svg": "/react_git-explorer/static/media/grid-on.dae0cf19f48a20be39812ebec5fa4ffe.svg",
@@ -9,10 +9,10 @@
     "static/media/magnifier.svg": "/react_git-explorer/static/media/magnifier.f9811fbf813d889a580c3d9c6e7c6785.svg",
     "static/media/grid-off.svg": "/react_git-explorer/static/media/grid-off.a5d166dff803d12bd32b12ded285d562.svg",
     "main.8587547b.css.map": "/react_git-explorer/static/css/main.8587547b.css.map",
-    "main.efc81f22.js.map": "/react_git-explorer/static/js/main.efc81f22.js.map"
+    "main.75344453.js.map": "/react_git-explorer/static/js/main.75344453.js.map"
   },
   "entrypoints": [
     "static/css/main.8587547b.css",
-    "static/js/main.efc81f22.js"
+    "static/js/main.75344453.js"
   ]
 }
