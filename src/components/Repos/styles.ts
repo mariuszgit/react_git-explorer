@@ -1,9 +1,13 @@
-import { styled } from 'styled-components';
-
-export const StyledSection = styled.section`
-display: flex;
-flex-direction: column;
+import { css, styled } from 'styled-components';
+type StyledSectionProps = {
+    grid: boolean
+}
+export const StyledSection = styled.section<StyledSectionProps>`
+display: grid;
 gap: 24px;
+${props => props.grid && css`
+    grid-template-columns: 50% 50%;
+`}
 `
 
 type Props = {
@@ -15,6 +19,7 @@ export const StyledArticle = styled.article<Props>`
     background-color: var(--c-gray--light);
     outline: ${props => props.active ? '4px solid var(--c-cyan)' : ''};
     padding: 24px 16px;
+    border: 1px solid var(--c-gray);
     border-radius: var(--b-radius);
     transition: opacity .25s ease-out;
     cursor: pointer;
@@ -33,9 +38,9 @@ export const StyledArticle = styled.article<Props>`
         
     }
 
-    & .footer {
+    & footer {
         display: flex;
-        gap: 48px;
+        gap: 24px;
     }
 
     &:hover {

@@ -10,22 +10,18 @@ type Props = {
 export const AppForm = ({ onFormSubmit, reset }: Props) => {
     const [query, setQuery] = useState('');
 
-    const inputRef = useRef<HTMLInputElement>(null)
+    const buttonRef = useRef<HTMLButtonElement>(null)
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-
-          // inputRef.current?.blur()
-          // e.target.focus()
-
+        buttonRef.current?.blur();
         reset();
         onFormSubmit(query);
-        console.log(inputRef)
+        setQuery('');
     }
 
     return (
         <StyledForm onSubmit={handleSubmit} className="AppForm App__form">
             <StyledInput
-              ref={inputRef}
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -36,6 +32,7 @@ export const AppForm = ({ onFormSubmit, reset }: Props) => {
               type="submit"
               disabled={!!!(query)}
               className="AppForm__btn"
+              ref={buttonRef}
             >
               <img src={magnifier} alt="Search" />
             </StyledButton>

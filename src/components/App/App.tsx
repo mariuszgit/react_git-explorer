@@ -1,4 +1,4 @@
-import { Route, Link, Switch, Redirect, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { useState } from "react";
 // components
 import { AppForm } from "../AppForm/AppForm";
@@ -6,11 +6,15 @@ import { Profiles } from "../Profiles";
 import { Repos } from "../Repos/Repos";
 import { Details } from "../Details";
 // styles & images
-import { StyledHeroSection, StyledNav, StyledLink } from "./styles";
+import { StyledHeader, StyledHeroSection, StyledNav, StyledLink } from "./styles";
+// import logo from "../../assets/logo.svg";
 import drawing from "../../assets/undraw_developer2.svg";
+import gridOnIcon from "../../assets/grid-on.svg";
+import gridOffIcon from "../../assets/grid-off.svg";
 // types
 import { Repo } from "../../types/Repo";
 import { SortBy } from "../../types/SortBy";
+import { StyledButton } from "../../ui/ui";
 
 
 function App() {
@@ -18,7 +22,7 @@ function App() {
   const [selectedName, setSelectedName] = useState<string | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<Repo | null>(null);
   const [sortBy, setSortBy] = useState<SortBy>('title');
-  console.log(selectedRepo);
+  const [grid, setGrid] = useState<boolean>(false);
 
   const location = useLocation();
 
@@ -29,10 +33,18 @@ function App() {
   };
 
   return (
+    <>
+    <StyledHeader>
+        <div className="container">
+          {/* <img src={logo} alt="" /> */}
+          <strong>GitExplorer</strong>
+        </div>
+    </StyledHeader>
+
     <div className="App container">
       <StyledHeroSection>
         <div className="left" style={{ width: "40%" }}>
-          <h1>Explore best repositories in world</h1>
+          <h1>Explore Your favorite repositories</h1>
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quod pariatur quae distinctio! Quo, ea!
@@ -43,10 +55,6 @@ function App() {
 
         <img src={drawing} alt="Person exploring github repositories" className="hero-image" />
       </StyledHeroSection>
-
-      <header>
-        
-      </header>
 
       <main>
         <StyledNav>
@@ -68,12 +76,29 @@ function App() {
             </div>
           </div>
 
-          <div className="Nav__sorting">
-            Sorted by:
-            {' '}
-            <span onClick={() => setSortBy('title')}>Title</span>
-            {' '}
-            <span onClick={() => setSortBy('description')}>Description</span>
+          <div className="Nav__controls">
+            {location.pathname === '/repos' && <>
+              <StyledButton
+                onClick={() => setSortBy('title')}
+                active = {sortBy === 'title'}
+              >
+                Sort by title
+              </StyledButton>
+
+              <StyledButton
+                onClick={() => setSortBy('description')}
+                active = {sortBy === 'description'}
+              >
+                Sort by description
+              </StyledButton>
+            </>}
+            
+            {location.pathname !== '/details' 
+            && <StyledButton onClick={() => setGrid(!grid)}>
+              <img src={(grid) ? gridOffIcon : gridOnIcon} alt="toggle grid mode" />
+            </StyledButton>
+            }
+            
           </div>
         </StyledNav>
 
@@ -81,6 +106,7 @@ function App() {
           <Route exact path="/">
             <Profiles
               userName={userName}
+              setUserName={setUserName}
               selectedName={selectedName}
               setSelectedName={setSelectedName}
             />
@@ -92,6 +118,7 @@ function App() {
               selectedRepo={selectedRepo}
               setSelectedRepo={setSelectedRepo}
               sortBy={sortBy}
+              grid={grid}
             />
           </Route>
 
@@ -101,6 +128,7 @@ function App() {
         </Switch>
       </main>
     </div>
+    </>
   );
 }
 

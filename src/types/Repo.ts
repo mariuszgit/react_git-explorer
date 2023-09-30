@@ -5,6 +5,7 @@ export type Repo = {
     description: string;
     stargazers_url: string;
     created_at: string;
+    stargazers_count: string;
     owner: {
       avatar_url: string;
       login: string;

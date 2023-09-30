@@ -13,9 +13,10 @@ type Props = {
   setSelectedRepo: (value: Repo) => void;
   selectedRepo: Repo | null;
   sortBy: SortBy;
+  grid: boolean;
 };
 
-export const Repos = ({ selectedName, setSelectedRepo, selectedRepo, sortBy }: Props) => {
+export const Repos = ({ selectedName, setSelectedRepo, selectedRepo, sortBy, grid }: Props) => {
   const { isLoading, value, error } = useFetch<Repo[]>(`${selectedName}/repos`);
   
   console.log(sortBy)
@@ -40,7 +41,7 @@ export const Repos = ({ selectedName, setSelectedRepo, selectedRepo, sortBy }: P
         <>
         {sortedValues?.length === 0 && <p>{`Sorry. ${selectedName} not have any repositories`}</p>}
           {sortedValues !== null && (
-            <StyledSection>
+            <StyledSection grid={grid}>
               {sortedValues?.map((repo: Repo) => (
                 <StyledArticle
                   active={repo.name === selectedRepo?.name}
@@ -53,14 +54,14 @@ export const Repos = ({ selectedName, setSelectedRepo, selectedRepo, sortBy }: P
                   </header>
                   
                   <main>
-                    <p>{repo.description}</p>
+                    <span>{repo.description}</span>
                   </main>
 
                   <hr />
 
                   <footer>
                     <span>
-                      {/* Stars: <strong>{repo.followers}</strong> */}
+                      Stars: <strong>{repo.stargazers_count}</strong>
                     </span>
 
                     <span>

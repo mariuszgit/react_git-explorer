@@ -14,6 +14,7 @@ export const StyledForm = styled.form`
 
 export const StyledInput = styled.input`
   padding: 8px 16px;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   width: 100%;
 

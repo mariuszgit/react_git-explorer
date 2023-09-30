@@ -7,14 +7,16 @@ gap: 24px;
 `
 
 type Props = {
-    active: boolean
+    active: boolean;
 }
 
 export const StyledArticle = styled.article<Props>`
+width: 100%;
     opacity: ${props => props.active ? '100%' : '80%'};
     background-color: var(--c-gray--light);
     outline: ${props => props.active ? '4px solid var(--c-cyan)' : ''};
     padding: 24px 16px;
+    border: 1px solid var(--c-gray);
     border-radius: var(--b-radius);
     transition: opacity .25s ease-out;
     cursor: pointer;
