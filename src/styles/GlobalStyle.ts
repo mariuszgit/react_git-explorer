@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
 
+    // variables
     :root {
         //colors
         --c-cyan: #67eae2;
@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
         --b-radius: 4px;
     }
 
+    // reset
     * {
       box-sizing: border-box ;
     }
@@ -21,6 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     img {
         vertical-align: bottom;
     }
+
+    // typography
     h1 {
         font-size: 48px;
         font-weight: 700;
@@ -33,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
         margin-bottom: 40px;
     }
 
+    // general
     html {
         font-family: 'Raleway', sans-serif;
         font-size: 16px;

@@ -6,8 +6,12 @@ export type Repo = {
     stargazers_url: string;
     created_at: string;
     stargazers_count: string;
+    message: string;
     owner: {
       avatar_url: string;
       login: string;
+      html_url: string;
+      followers_count: string;
+      following: string;
     }
 };

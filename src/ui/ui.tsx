@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type Props = {
-    active?: boolean;
+    $active?: boolean;
 }
 
 export const StyledButton = styled.button<Props>`
@@ -9,7 +9,7 @@ export const StyledButton = styled.button<Props>`
     padding: 4px;
     border: 1px solid var(--c-gray);
     border-radius: var(--b-radius);
-    outline: ${props => (props.active) ? '4px solid var(--c-cyan)' : 'none'};
+    outline: ${props => (props.$active) ? '4px solid var(--c-cyan)' : 'none'};
     cursor: pointer;
     & img {
         width: 24px;

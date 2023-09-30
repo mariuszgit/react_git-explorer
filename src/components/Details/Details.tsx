@@ -1,14 +1,48 @@
-import { useEffect } from "react";
-import { useFetch } from "../../hooks/useFetch";
-import { Loader } from "../Loader";
 import { Redirect } from "react-router-dom";
+import { Repo } from "../../types/Repo";
+// styles
+import { StyledSection } from "./styles";
 
+type Props = {
+  selectedRepo: Repo | null;
+};
 
-export const Details = () => {
-    const { isLoading, value, error } = useFetch('abc');
-    console.log(isLoading, value);
-
+export const Details = ({ selectedRepo }: Props) => {
+  if (selectedRepo) {
     return (
-        <p>Lorem ipsum</p>
+      <StyledSection>
+        <div className="Details__profile">
+          <img
+            src={selectedRepo.owner.avatar_url}
+            alt={`${selectedRepo.name} avatar`}
+          />
+          <strong>{selectedRepo.owner.login}</strong>
+        </div>
+        <div className="Details__info">
+          <h2>Owner:</h2>
+          <ul>
+            <li>{`Name: ${selectedRepo.name}`}</li>
+            <li>
+              Url: <a href={selectedRepo.owner.html_url} target="_blank" rel="noreferrer">{selectedRepo.owner.html_url}</a>
+            </li>
+          </ul>
+          <hr />
+          <h2>Repository:</h2>
+          <ul>
+            <li>
+              Repository ame: <strong>{selectedRepo.name}</strong>
+            </li>
+            <li>
+              Description: <strong>{selectedRepo.description}</strong>
+            </li>
+            <li>
+              Stars: <strong>{selectedRepo.stargazers_count}</strong>
+            </li>
+          </ul>
+        </div>
+      </StyledSection>
     );
-}
+  }
+
+  return <Redirect to="/" />;
+};

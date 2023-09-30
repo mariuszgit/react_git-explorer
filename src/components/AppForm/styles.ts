@@ -37,6 +37,9 @@ export const StyledButton = styled.button`
     &:hover {
         filter: brightness(1.05);
     }
+    & img {
+      pointer-events: none;
+    }
 
     &:active {}
 `;
