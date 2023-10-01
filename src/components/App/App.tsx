@@ -37,10 +37,6 @@ function App() {
     location.pathname = "/";
   };
 
-  useEffect(() => {
-    location.pathname = '/'
-  }, [])
-
   return (
     <>
       <StyledHeader>
