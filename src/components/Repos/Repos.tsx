@@ -1,15 +1,15 @@
 import { Redirect } from "react-router-dom";
 // components
 import { Loader } from "../Loader/Loader";
+import { NotificationModal } from "../Notification/Notification";
 import { useFetch } from "../../hooks/useFetch";
 // styles
 import { StyledArticle, StyledSection } from "./styles";
 import { useEffect, useMemo } from "react";
-import { NotificationModal } from "../Notification/Notification";
 // types
 import { Repo } from "../../types/Repo";
-import { SortBy } from "../../types/SortBy";
 import { User } from "../../types/User";
+import { SortBy } from "../../types/SortBy";
 // helper
 import { sortDescriptions } from "../../helpers/sortDescription";
 
@@ -30,7 +30,7 @@ export const Repos = ({
   grid,
   reset,
 }: Props) => {
-  const { isLoading, value, error } = useFetch<Repo[] >(
+  const { isLoading, value, error } = useFetch<any>(
     `${selectedUser?.login}/repos`
   );
 
@@ -54,12 +54,12 @@ export const Repos = ({
     }
   });
 
+  if (error) return <NotificationModal error={error.message} />;
+
   if (SortedRepos?.length === 0)
     return (
       <p>{`Sorry. ${selectedUser?.login} does not have any repositories`}</p>
     );
-
-  if (error) return <NotificationModal error={error.message} />;
 
   if (selectedUser) return (
       <>

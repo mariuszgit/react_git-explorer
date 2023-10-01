@@ -8,7 +8,8 @@ export const StyledForm = styled.form`
   display: flex;
 
   &:focus-within {
-    outline: 4px solid var(--c-cyan);
+    outline: 4px solid var(--c-cyan--light);
+    border: 1px solid var(--c-cyan);
   }
 `;
 
@@ -40,6 +41,4 @@ export const StyledButton = styled.button`
     & img {
       pointer-events: none;
     }
-
-    &:active {}
 `;

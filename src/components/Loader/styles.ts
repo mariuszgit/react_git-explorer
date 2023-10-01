@@ -1,5 +1,7 @@
-.Loader {
-  position: absolute;
+import styled from 'styled-components';
+
+export const StyledDiv = styled.div`
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
@@ -7,9 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(white, .9);
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 199;
   
-    &__content {
+    & .content {
       border-radius: 50%;
       width: 2em;
       height: 2em;
@@ -18,13 +21,13 @@
       border-left-color: var(--c-cyan);
       animation: load8 1.2s infinite linear;
     }
-  }
-  
-  @keyframes load8 {
-    0% {
-      transform: rotate(0deg);
+
+    @keyframes load8 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+`

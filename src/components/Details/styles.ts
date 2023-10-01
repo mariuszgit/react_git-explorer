@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSection = styled.section`
     display: grid;
-    grid-template-columns: 228px auto;
+    
     gap: 24px;
     & div {
         border: 1px solid var(--c-gray);
@@ -18,5 +18,9 @@ export const StyledSection = styled.section`
         flex-direction: column;
         align-items: center;
         gap: 16px;
+    }
+
+    @media (min-width: 760px) {
+        grid-template-columns: 228px auto;
     }
 `

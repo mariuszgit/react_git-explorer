@@ -9,7 +9,7 @@ import usLocalStorage from "../../hooks/usLocalStorage";
 import { NotificationModal } from "../Notification/Notification";
 // styles
 import { StyledArticle, StyledSection } from "./styles";
-import { StyledButton } from "../../ui/ui";
+import { StyledButton } from "../../styles/ui";
 import trashIcon from "../../assets/trash.svg";
 import { Loader } from "../Loader";
 
@@ -49,6 +49,7 @@ export const Profiles = ({
     }
     removeItem(index);
   } 
+
   if (error) return <NotificationModal error={error.message} />;
 
   return (

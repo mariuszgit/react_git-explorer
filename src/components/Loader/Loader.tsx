@@ -1,7 +1,7 @@
-import "./Loader.scss"
+import { StyledDiv } from './styles';
 
 export const Loader: React.FC = () => (
-    <div className="Loader">
-      <div className="Loader__content" />
-    </div>
+    <StyledDiv>
+      <div className="content" />
+    </StyledDiv>
   );

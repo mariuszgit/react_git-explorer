@@ -16,17 +16,29 @@ export const StyledHeader = styled.header`
 
 export const StyledHeroSection = styled.section`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  
   align-items: center;
   padding: 48px 0;
   & .content {
-    width: 40%;
+    width: 100%;
+  }
+  & img.hero-image {
+    max-width: 60%;
   }
 
-  & img.hero-image {
-    max-width: 40%;
+  @media (min-width: 760px) {
+    flex-direction: row;
+    justify-content: space-between;
+    & .content {
+      width: 40%;
+    }
+    & img.hero-image {
+      width: 40%
+    }
   }
 `;
+
 export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -41,16 +53,3 @@ export const StyledNav = styled.nav`
   }
 `;
 
-export const StyledItem = styled.div``;
-export const StyledLink = styled(Link)`
-  display: inline-block;
-  padding: 16px;
-  background-color: var(--c-cyan);
-  border: 1px solid var(--c-gray);
-  border-bottom: none;
-  border-radius: var(--b-radius) var(--b-radius) 0 0;
-  transition: all 0.15s ease-in-out;
-  &:hover {
-    filter: brightness(1.05);
-  }
-`;

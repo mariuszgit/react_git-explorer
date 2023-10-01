@@ -1,4 +1,4 @@
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 // components
 import { AppForm } from "../AppForm/AppForm";
@@ -10,17 +10,16 @@ import {
   StyledHeader,
   StyledHeroSection,
   StyledNav,
-  StyledLink,
 } from "./styles";
+import { StyledTab, StyledButton } from '../../styles/ui'
 import logo from '../../assets/logo.svg';
 import drawing from "../../assets/undraw_developer2.svg";
 import gridOnIcon from "../../assets/grid-on.svg";
 import gridOffIcon from "../../assets/grid-off.svg";
 // types
 import { Repo } from "../../types/Repo";
-import { SortBy } from "../../types/SortBy";
-import { StyledButton } from "../../ui/ui";
 import { User } from "../../types/User";
+import { SortBy } from "../../types/SortBy";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -75,18 +74,18 @@ function App() {
           <StyledNav>
             <div className="Nav__navbar">
               <div className="Nav__list">
-                <StyledLink to="/" className="Nav__link">
+                <StyledTab to="/" className="Nav__link">
                   Users
-                </StyledLink>
+                </StyledTab>
                 {selectedUser && (
-                  <StyledLink to="/repos" className="Nav__link">
+                  <StyledTab to="/repos" className="Nav__link">
                     Repositories
-                  </StyledLink>
+                  </StyledTab>
                 )}
                 {selectedRepo && selectedUser && (
-                  <StyledLink to="/details" className="Nav__link">
+                  <StyledTab to="/details" className="Nav__link">
                     Details
-                  </StyledLink>
+                  </StyledTab>
                 )}
               </div>
             </div>
@@ -146,6 +145,10 @@ function App() {
 
             <Route path="/details">
               <Details selectedRepo={selectedRepo} />
+            </Route>
+
+            <Route>
+              <Redirect to="/" />
             </Route>
           </Switch>
         </main>
