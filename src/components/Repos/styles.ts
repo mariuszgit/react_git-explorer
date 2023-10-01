@@ -5,12 +5,13 @@ type StyledSectionProps = {
 
 export const StyledSection = styled.section<StyledSectionProps>`
   display: grid;
-  gap: 24px;
+  row-gap: 24px;
   ${(props) =>
     props.$grid &&
     css`
       @media (min-width: 760px) {
         grid-template-columns: 1fr 1fr;
+        gap: 24px;
       }
     `};
 `;
